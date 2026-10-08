@@ -13,7 +13,7 @@
 <div class="layout">
 <section class="card" id="input-card"><h2><span class="step">1</span>방문 계획</h2>
 <form id="planner" novalidate>
-<fieldset><legend>어떤 방문인가요?</legend><div class="choices"><label class="choice"><input type="radio" name="situation" value="처음 방문" checked><span>처음 방문</span></label><label class="choice"><input type="radio" name="situation" value="다시 방문"><span>다시 방문</span></label><label class="choice"><input type="radio" name="situation" value="검사·시술"><span>검사·시술</span></label></div><p class="hint" id="situation-hint">접수 위치와 기관에서 요청한 준비물을 미리 확인하세요.</p></fieldset>
+<fieldset><legend>어떤 방문인가요?</legend><div class="choices"><label class="choice"><input type="radio" name="situation" value="처음 방문" checked><span>처음 방문</span></label><label class="choice"><input type="radio" name="situation" value="다시 방문"><span>다시 방문</span></label></div><p class="hint" id="situation-hint">접수 위치와 기관에서 요청한 준비물을 미리 확인하세요.</p></fieldset>
 <div class="field"><label for="appointment">예약 시각</label><input id="appointment" type="text" inputmode="numeric" placeholder="예: 09:30" maxlength="5" autocomplete="off" aria-describedby="time-hint appointment-error"><p class="hint" id="time-hint">24시간 형식으로 입력하세요. 예: 오후 2시 → 14:00</p><p class="error" id="appointment-error" hidden></p></div>
 <div class="field"><label for="travel">편도 이동 시간</label><div class="input-wrap"><input id="travel" type="number" inputmode="numeric" min="0" max="1440" step="1" placeholder="예: 40" aria-describedby="travel-error"><span>분</span></div><p class="error" id="travel-error" hidden></p></div>
 <div class="two"><div class="field"><label for="buffer">일찍 도착할 여유</label><div class="input-wrap"><input id="buffer" type="number" inputmode="numeric" min="0" max="1440" step="1" placeholder="예: 20" aria-describedby="buffer-error"><span>분</span></div><p class="error" id="buffer-error" hidden></p></div><div class="field"><label for="prep">집에서 준비할 시간</label><div class="input-wrap"><input id="prep" type="number" inputmode="numeric" min="0" max="1440" step="1" placeholder="예: 30" aria-describedby="prep-error"><span>분</span></div><p class="error" id="prep-error" hidden></p></div></div>
@@ -29,7 +29,7 @@
 </main><script>
 'use strict';
 const $=id=>document.getElementById(id);
-const hints={'처음 방문':'접수 위치와 기관에서 요청한 준비물을 미리 확인하세요.','다시 방문':'예약 시각과 접수 위치가 이전과 같은지 확인하세요.','검사·시술':'준비물과 방문 전 지침, 혼자 귀가할 수 있는지 기관의 안내를 확인하세요.'};
+const hints={'처음 방문':'접수 위치와 기관에서 요청한 준비물을 미리 확인하세요.','다시 방문':'예약 시각과 접수 위치가 이전과 같은지 확인하세요.'};
 function stamp(minutes){const day=Math.floor(minutes/1440),m=((minutes%1440)+1440)%1440;return {time:String(Math.floor(m/60)).padStart(2,'0')+':'+String(m%60).padStart(2,'0'),day:day===0?'당일':day===-1?'전날':`${-day}일 전`};}
 function clearOutput(){ $('output').hidden=true;$('print').hidden=true;$('empty').hidden=false;$('announce').textContent=''; }
 function error(id,message){$(id).setAttribute('aria-invalid',message?'true':'false');$(id+'-error').textContent=message;$(id+'-error').hidden=!message;}
